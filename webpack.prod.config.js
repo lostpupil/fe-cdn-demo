@@ -2,7 +2,8 @@ const path = require('path');
 const fs = require('fs');
 const bdigest = fs.readFileSync('./.bdigest', 'utf8');
 const webpack = require('webpack');
-var cleanWebpackPlugin = require('clean-webpack-plugin');
+const cleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 console.log(`current digest: ${bdigest}`);
 
@@ -22,7 +23,7 @@ module.exports = {
             use: {
                 loader: 'babel-loader',
                 options: {
-                    presets: ['@babel/preset-env']
+                    presets: ['es2015']
                 }
             }
         }]
@@ -30,7 +31,7 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             "process.env": {
-                "NODE_ENV": JSON.stringify("development")
+                "NODE_ENV": JSON.stringify("production")
             }
         }),
         new cleanWebpackPlugin(['public/dist/prod'], {
@@ -38,7 +39,7 @@ module.exports = {
             verbose: true,
             dry: false
         }),
-        new webpack.optimize.UglifyJsPlugin(),
+        new UglifyJSPlugin(),
         new webpack.LoaderOptionsPlugin({
             minimize: true,
             debug: false
