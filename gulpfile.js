@@ -24,6 +24,12 @@ gulp.task('rehash', () => {
 
 gulp.task('dev', function() {
     return gulp.src('src/index.js')
-        .pipe(webpack(require('./webpack.config.js')))
-        .pipe(gulp.dest('public/dist/'));
+        .pipe(webpack(require('./webpack.dev.config.js')))
+        .pipe(gulp.dest('public/dist/dev'));
+});
+
+gulp.task('prod', function() {
+    return gulp.src('src/index.js')
+        .pipe(webpack(require('./webpack.prod.config.js')))
+        .pipe(gulp.dest('public/dist/prod'));
 });

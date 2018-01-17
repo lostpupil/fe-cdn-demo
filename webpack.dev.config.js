@@ -33,7 +33,7 @@ module.exports = {
                 "NODE_ENV": JSON.stringify("development")
             }
         }),
-        new cleanWebpackPlugin(['public/dist'], {
+        new cleanWebpackPlugin(['public/dist/dev'], {
             root: __dirname,
             verbose: true,
             dry: false
