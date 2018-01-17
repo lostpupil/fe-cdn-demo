@@ -4,7 +4,7 @@ var webpack = require('gulp-webpack');
 
 var fs = require('fs');
 var crypto = require("crypto-js");
-var shell = require('gulp-shell')
+var gulpSequence = require('gulp-sequence')；
 
 gulp.task('default', function() {
     console.log('hey I am banana')
@@ -33,3 +33,7 @@ gulp.task('prod', function() {
         .pipe(webpack(require('./webpack.prod.config.js')))
         .pipe(gulp.dest('public/dist/prod'));
 });
+
+gulp.task('dev-seq', gulpSequence(['rehash', 'dev']));
+
+gulp.task('prod-seq', gulpSequence(['rehash', 'prod']))
