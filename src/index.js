@@ -1,7 +1,6 @@
 var m = require("mithril")
 var root = document.body
 
-
 var Index = {
     view: function(vnode) {
         return m('div', [

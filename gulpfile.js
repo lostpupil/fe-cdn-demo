@@ -8,6 +8,10 @@ gulp.task('default', function() {
     console.log('hey I am banana')
 });
 
+gulp.task('rehash', () => {
+
+});
+
 gulp.task('dev', function() {
     var myConfig = Object.create(webpackConfig);
     return gulp.src('')
