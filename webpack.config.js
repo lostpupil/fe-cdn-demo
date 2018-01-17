@@ -1,7 +1,9 @@
 const path = require('path');
 const fs = require('fs');
 const bdigest = fs.readFileSync('./.bdigest', 'utf8');
-const webpack = require('webpack')
+const webpack = require('webpack');
+var cleanWebpackPlugin = require('clean-webpack-plugin');
+
 console.log(`current digest: ${bdigest}`);
 
 module.exports = {
@@ -28,8 +30,13 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             "process.env": {
-                "NODE_ENV": JSON.stringify("production")
+                "NODE_ENV": JSON.stringify("development")
             }
+        }),
+        new cleanWebpackPlugin(['public/dist'], {
+            root: __dirname,
+            verbose: true,
+            dry: false
         }),
         new webpack.optimize.UglifyJsPlugin(),
         new webpack.LoaderOptionsPlugin({
