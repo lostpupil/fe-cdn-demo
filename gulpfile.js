@@ -4,7 +4,7 @@ var webpack = require('gulp-webpack');
 
 var fs = require('fs');
 var crypto = require("crypto-js");
-var gulpSequence = require('gulp-sequence')；
+var gulpSequence = require('gulp-sequence');
 
 gulp.task('default', function() {
     console.log('hey I am banana')
