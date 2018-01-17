@@ -38,10 +38,10 @@ module.exports = {
             verbose: true,
             dry: false
         }),
-        new webpack.optimize.UglifyJsPlugin(),
-        new webpack.LoaderOptionsPlugin({
-            minimize: true,
-            debug: false
-        })
+        // new webpack.optimize.UglifyJsPlugin(),
+        // new webpack.LoaderOptionsPlugin({
+        //     minimize: true,
+        //     debug: false
+        // })
     ]
 }

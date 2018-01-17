@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 
-var webpack = require("webpack");
+var webpack = require('gulp-webpack');
 
 var fs = require('fs');
 var crypto = require("crypto-js");
@@ -23,5 +23,7 @@ gulp.task('rehash', () => {
 });
 
 gulp.task('dev', function() {
-    shell.task(['webpack'])
+    return gulp.src('src/index.js')
+        .pipe(webpack(require('./webpack.config.js')))
+        .pipe(gulp.dest('public/dist/'));
 });
