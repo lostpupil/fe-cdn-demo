@@ -1,37 +1,27 @@
 var gulp = require('gulp');
 
 var webpack = require("webpack");
-var webpackStream = require('webpack-stream');
-var webpackConfig = require("./webpack.config.js");
+
+var fs = require('fs');
+var crypto = require("crypto-js");
+var shell = require('gulp-shell')
 
 gulp.task('default', function() {
     console.log('hey I am banana')
 });
 
 gulp.task('rehash', () => {
-
+    var key = crypto.MD5(`${Number(new Date())}`).toString();
+    console.log(key)
+    fs.truncate("./.bdigest", 0, function() {
+        fs.writeFile("./.bdigest", key, function(err) {
+            if (err) {
+                return console.log(err);
+            }
+        });
+    });
 });
 
 gulp.task('dev', function() {
-    var myConfig = Object.create(webpackConfig);
-    return gulp.src('')
-        .pipe(webpackStream(myConfig))
-});
-
-gulp.task('prod', function() {
-    var myConfig = Object.create(webpackConfig);
-    myConfig.plugins = myConfig.plugins.concat(
-        new webpack.DefinePlugin({
-            "process.env": {
-                "NODE_ENV": JSON.stringify("production")
-            }
-        }),
-        new webpack.optimize.UglifyJsPlugin(),
-        new webpack.LoaderOptionsPlugin({
-            minimize: true,
-            debug: false
-        })
-    );
-    return gulp.src('')
-        .pipe(webpackStream(myConfig))
+    shell.task(['webpack'])
 });

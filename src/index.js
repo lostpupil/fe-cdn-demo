@@ -15,7 +15,7 @@ var Index = {
 var Hello = {
     view: function(vnode) {
         return m('div', [
-            m('h1', 'This is 🍌.'),
+            m('h1', 'This is banana'),
             m("a", {
                 href: "#!/author"
             }, "->")
@@ -23,13 +23,13 @@ var Hello = {
     }
 }
 
-class SimpleComponent {
+class Simple {
     constructor(vnode) {
         this.author = "Banana!"
     }
     view() {
         return m('div', [
-            m('h1', 'hello from 🍌.'),
+            m('h1', 'hello from banana'),
             m("a", {
                 href: "#!/"
             }, "<-")
@@ -40,5 +40,5 @@ class SimpleComponent {
 m.route(root, "/", {
     "/": Index,
     "/hello": Hello,
-    "/author": SimpleComponent
+    "/author": Simple
 })
